@@ -4,7 +4,7 @@ import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
-import ItemCardGrid from '../components/ItemCardGrid';
+import ItemCardGridFood from '../components/ItemCardGridFood';
 import * as Api from '../api/api';
 import { makeStyles } from '@material-ui/core/styles';
 import Background from '../images/background.jpg';
@@ -71,7 +71,5 @@ const Home = (props) => {
   );
 };
 
-const mapStateToProps = (state) => ({
-  restaurantFoodItems: state.reducer.restaurantFoodItems,
-});
+const mapStateToProps = (state) => ({});
 export default connect(mapStateToProps)(Home);

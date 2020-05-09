@@ -15,3 +15,13 @@ export function getItemsByRestaurantId(request) {
   var link = Config.ipAddress + '/getItemsByRestaurantId';
   return axios.post(link, request);
 }
+
+export function getAllOrganisations() {
+  var link = Config.ipAddress + '/getAllOrganisations';
+  return axios.get(link);
+}
+
+export function getAllRestaurants() {
+  var link = Config.ipAddress + '/getAllRestaurants';
+  return axios.get(link);
+}

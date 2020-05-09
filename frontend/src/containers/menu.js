@@ -4,36 +4,35 @@ import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import { makeStyles } from '@material-ui/core/styles';
-import ItemCardGridRes from '../components/ItemCardGridRes';
+import ItemCardGridFood from '../components/ItemCardGridFood';
 import * as Api from '../api/api';
 
 import { connect } from 'react-redux';
 
 const useStyles = makeStyles((theme) => ({}));
 
-const Businesses = (props) => {
+const Menu = (props) => {
   const classes = useStyles();
 
   useEffect(() => {
-    Api.getAllRestaurants()
+    const body = { resID: props.selectedRestaurantID };
+    Api.getItemsByRestaurantId(body)
       .then((result) => {
-        props.dispatch({ type: 'SET_RESTAURANTS', data: result.data });
+        props.dispatch({ type: 'SET_RESTAURANT_FOOD_ITEMS', data: result.data });
       })
       .catch((err) => {
         console.error(err);
       });
   }, []);
 
-  const selectRestaurant = (restaurantID) => {
-    props.dispatch({ type: 'SET_SELECTED_RESTAURANT_ID', data: restaurantID });
-    props.history.push('/menu');
-  };
-
   return (
     <Grid container className={classes.center}>
       <Grid item xs={12} sm={12} md={8} lg={8}>
         <Card>
-          <ItemCardGridRes dataList={props.restaurants} buttonText={'VIEW'} buttonOnClick={selectRestaurant} />
+          <ItemCardGridFood
+            dataList={props.restaurantFoodItems.concat(props.restaurantFoodItems)}
+            buttonText={'VIEW'}
+          />
         </Card>
       </Grid>
     </Grid>
@@ -41,6 +40,7 @@ const Businesses = (props) => {
 };
 
 const mapStateToProps = (state) => ({
-  restaurants: state.reducer.restaurants,
+  selectedRestaurantID: state.reducer.selectedRestaurantID,
+  restaurantFoodItems: state.reducer.restaurantFoodItems,
 });
-export default connect(mapStateToProps)(Businesses);
+export default connect(mapStateToProps)(Menu);

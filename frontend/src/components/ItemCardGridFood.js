@@ -2,7 +2,7 @@ import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import ItemCard from './ItemCard';
 
-export default function ItemCardGrid(props) {
+export default function ItemCardGridFood(props) {
   return (
     <Grid container direction='row' justify={'center'} spacing={2}>
       {props.dataList.map((foodItem, index) => (
