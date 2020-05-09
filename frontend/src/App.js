@@ -9,6 +9,7 @@ import Home from './containers/home';
 import Organisations from './containers/organisations';
 import Businesses from './containers/businesses';
 import Profile from './containers/profile';
+import Menu from './containers/menu';
 
 import Sidebar from './components/sidebar';
 import Topbar from './components/topbar';
@@ -168,6 +169,7 @@ const App = (props) => {
             <Route exact path='/organisations' component={Organisations}></Route>
             <Route exact path='/businesses' component={Businesses}></Route>
             <Route exact path='/profile' component={Profile}></Route>
+            <Route exact path='/menu' component={Menu}></Route>
             <Redirect from='/' to={'home'} />
           </Switch>
         </main>

@@ -12,7 +12,7 @@ export default function ItemCardGridRes(props) {
             subtitle={restaurant.contactNum}
             description={restaurant.address + ' ' + restaurant.postalCode}
             buttonText={props.buttonText}
-            buttonOnClick={() => console.log('test')}
+            buttonOnClick={() => props.buttonOnClick(restaurant.resID)}
             allowHover={true}
           />
         </Grid>

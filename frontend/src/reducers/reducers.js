@@ -4,6 +4,7 @@ export function reducer(
     restaurantFoodItems: [],
     organisations: [],
     restaurants: [],
+    selectedRestaurantID: '',
   },
   action
 ) {
@@ -27,6 +28,11 @@ export function reducer(
       return {
         ...state,
         restaurants: action.data,
+      };
+    case 'SET_SELECTED_RESTAURANT_ID':
+      return {
+        ...state,
+        selectedRestaurantID: action.data,
       };
     default:
       return state;
