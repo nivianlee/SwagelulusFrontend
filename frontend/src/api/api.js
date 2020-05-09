@@ -10,3 +10,8 @@ export function getUsers() {
   var link = Config.ipAddress + '/users';
   return axios.get(link);
 }
+
+export function getItemsByRestaurantId(request) {
+  var link = Config.ipAddress + '/getItemsByRestaurantId';
+  return axios.post(link, request);
+}
