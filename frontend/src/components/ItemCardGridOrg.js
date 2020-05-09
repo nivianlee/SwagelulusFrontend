@@ -12,7 +12,7 @@ export default function ItemCardGridOrg(props) {
             subtitle={'# meals donated today'}
             description={org.address + ' ' + org.postalCode}
             buttonText={props.buttonText}
-            buttonOnClick={() => console.log('test')}
+            buttonOnClick={() => props.buttonOnClick(org.orgID)}
             allowHover={true}
           />
         </Grid>

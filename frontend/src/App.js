@@ -10,6 +10,7 @@ import Organisations from './containers/organisations';
 import Businesses from './containers/businesses';
 import Profile from './containers/profile';
 import Menu from './containers/menu';
+import Donate from './containers/donate';
 
 import Sidebar from './components/sidebar';
 import Topbar from './components/topbar';
@@ -170,6 +171,7 @@ const App = (props) => {
             <Route exact path='/businesses' component={Businesses}></Route>
             <Route exact path='/profile' component={Profile}></Route>
             <Route exact path='/menu' component={Menu}></Route>
+            <Route exact path='/donate' component={Donate}></Route>
             <Redirect from='/' to={'home'} />
           </Switch>
         </main>

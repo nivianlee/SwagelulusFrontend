@@ -25,3 +25,8 @@ export function getAllRestaurants() {
   var link = Config.ipAddress + '/getAllRestaurants';
   return axios.get(link);
 }
+
+export function updateDonatedAmount(request) {
+  var link = Config.ipAddress + '/updateDonatedAmount';
+  return axios.post(link, request);
+}

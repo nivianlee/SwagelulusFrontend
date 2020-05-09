@@ -24,11 +24,16 @@ const Organisations = (props) => {
       });
   }, []);
 
+  const selectOrg = (orgID) => {
+    props.dispatch({ type: 'SET_SELECTED_ORGANISATION_ID', data: orgID });
+    props.history.push('/donate');
+  };
+
   return (
     <Grid container className={classes.center}>
       <Grid item xs={12} sm={12} md={8} lg={8}>
         <Card>
-          <ItemCardGridOrg dataList={props.organisations} buttonText={'VIEW'} />
+          <ItemCardGridOrg dataList={props.organisations} buttonText={'Donate'} buttonOnClick={selectOrg} />
         </Card>
       </Grid>
     </Grid>
