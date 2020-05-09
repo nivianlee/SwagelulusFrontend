@@ -5,12 +5,13 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import { makeStyles } from '@material-ui/core/styles';
 import ItemCardGridFood from '../components/ItemCardGridFood';
+import Button from '@material-ui/core/Button';
 import * as Api from '../api/api';
 
 import { connect } from 'react-redux';
 
 const useStyles = makeStyles((theme) => ({
-  center: { alignItems: 'center', justifyContent: 'center' },
+  titleBar: { alignItems: 'center' },
 }));
 
 const Cart = (props) => {
@@ -66,11 +67,22 @@ const Cart = (props) => {
     }
   };
 
+  const handleCheckout = () => {};
+
   return (
     <Grid container spacing={2}>
       <Grid item xs={12} sm={12} md={12} lg={12}>
         <Card>
-          <CardContent>Shopping Cart</CardContent>
+          <Grid className={classes.titleBar} container direction='row'>
+            <Grid item>
+              <CardContent>Shopping Cart</CardContent>
+            </Grid>
+            <Grid item>
+              <Button onClick={handleCheckout} color='primary' variant='contained'>
+                Checkout
+              </Button>
+            </Grid>
+          </Grid>
         </Card>
       </Grid>
       <Grid item>
