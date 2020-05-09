@@ -34,12 +34,10 @@ const Organisations = (props) => {
   return (
     <Grid container className={classes.center}>
       <Grid item xs={12} sm={12} md={2} lg={2}>
-        <Card>
-          <ItemCardGridOrg dataList={props.organisations} buttonText={'Donate'} buttonOnClick={selectOrg} />
-        </Card>
+        <Card>smth</Card>
       </Grid>
       <Grid item xs={12} sm={12} md={8} lg={8}>
-        <ItemCardGridOrg dataList={props.organisations} buttonText={'VIEW'} />
+        <ItemCardGridOrg dataList={props.organisations} buttonText={'Donate'} buttonOnClick={selectOrg} />
       </Grid>
     </Grid>
   );
