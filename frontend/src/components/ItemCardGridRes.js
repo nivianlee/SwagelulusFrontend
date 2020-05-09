@@ -2,15 +2,15 @@ import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import ItemCard from './ItemCard';
 
-export default function ItemCardGrid(props) {
+export default function ItemCardGridRes(props) {
   return (
     <Grid container direction='row' justify={'center'} spacing={2}>
-      {props.dataList.map((foodItem, index) => (
+      {props.dataList.map((restaurant, index) => (
         <Grid item key={index}>
           <ItemCard
-            title={foodItem.name}
-            subtitle={'$' + foodItem.price}
-            description={foodItem.description}
+            title={restaurant.name}
+            subtitle={restaurant.contactNum}
+            description={restaurant.address + ' ' + restaurant.postalCode}
             buttonText={props.buttonText}
             buttonOnClick={() => console.log('test')}
             allowHover={true}

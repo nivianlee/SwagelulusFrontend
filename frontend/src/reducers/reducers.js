@@ -2,6 +2,8 @@ export function reducer(
   state = {
     users: [],
     restaurantFoodItems: [],
+    organisations: [],
+    restaurants: [],
   },
   action
 ) {
@@ -15,6 +17,16 @@ export function reducer(
       return {
         ...state,
         restaurantFoodItems: action.data,
+      };
+    case 'SET_ORGANISATIONS':
+      return {
+        ...state,
+        organisations: action.data,
+      };
+    case 'SET_RESTAURANTS':
+      return {
+        ...state,
+        restaurants: action.data,
       };
     default:
       return state;
