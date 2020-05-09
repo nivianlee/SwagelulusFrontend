@@ -53,7 +53,11 @@ const Menu = (props) => {
   return (
     <Grid container className={classes.center}>
       <Grid item xs={12} sm={12} md={8} lg={8}>
-        <ItemCardGridFood dataList={props.restaurantFoodItems} buttonText={'Add to Cart'} buttonOnClick={addToCart} />
+        {sessionStorage.getItem('userType') && sessionStorage.getItem('userType') === 'hcw' ? (
+          <ItemCardGridFood dataList={props.restaurantFoodItems} buttonText={'Add to Cart'} buttonOnClick={addToCart} />
+        ) : (
+          <ItemCardGridFood dataList={props.restaurantFoodItems} />
+        )}
       </Grid>
     </Grid>
   );
