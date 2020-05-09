@@ -30,7 +30,15 @@ const useStyles = makeStyles((theme) => ({
 
 const Topbar = (props) => {
   const classes = useStyles();
-  const { handleDrawerToggle, handleLogout, handleProfile, pathname, handleSelectedItem, selectedItem } = props;
+  const {
+    handleDrawerToggle,
+    handlePressLogin,
+    handleLogout,
+    handleProfile,
+    pathname,
+    handleSelectedItem,
+    selectedItem,
+  } = props;
 
   return (
     <AppBar position='fixed' className={classes.appBar} style={{ backgroundColor: '#ffffff' }}>
@@ -112,7 +120,7 @@ const Topbar = (props) => {
                   edge='end'
                   aria-label='vpnKey'
                   onClick={() => {
-                    handleLogout();
+                    handlePressLogin();
                   }}
                 >
                   <VpnKeyIcon style={{ color: '#000000' }} />

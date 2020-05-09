@@ -14,9 +14,12 @@ import Sidebar from './components/sidebar';
 import Topbar from './components/topbar';
 
 import * as Reducer from './reducers/reducers.js';
+import * as Api from './api/api';
 //for the appbar and drawer
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { makeStyles } from '@material-ui/core/styles';
+
+import LoginPopover from './components/LoginPopover';
 
 const rootReducer = combineReducers({
   reducer: Reducer.reducer,
@@ -58,6 +61,7 @@ const App = (props) => {
   const [mobileOpen, setMobileOpen] = useState(false);
   let pathname = props.history.location.pathname;
   const [selectedItem, setSelectedItem] = useState(0);
+  const [showingLogin, setShowingLogin] = useState(false);
 
   useEffect(() => {
     setMobileOpen(false);
@@ -97,6 +101,33 @@ const App = (props) => {
     }
   };
 
+  const openLoginDialog = () => {
+    setShowingLogin(true);
+  };
+
+  const closeLoginDialog = () => {
+    setShowingLogin(false);
+  };
+
+  const handleLogin = (nric) => {
+    const body = { id: nric };
+    Api.login(body)
+      .then((result) => {
+        if (result.data.isValid) {
+          sessionStorage.setItem('userID', nric);
+          sessionStorage.setItem('userType', result.data.type);
+          if (result.data.type == 'hcw') {
+            sessionStorage.setItem('orgID', result.data.id);
+          }
+        } else {
+          console.log('invalid user id');
+        }
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  };
+
   const handleLogout = () => {
     sessionStorage.clear();
     props.history.push('/');
@@ -121,12 +152,14 @@ const App = (props) => {
         )}
         <Topbar
           handleDrawerToggle={handleDrawerToggle}
+          handlePressLogin={openLoginDialog}
           handleLogout={handleLogout}
           handleProfile={handleProfile}
           pathname={pathname}
           handleSelectedItem={handleSelectedItem}
           selectedItem={selectedItem}
         />
+        <LoginPopover open={showingLogin} handleLogin={handleLogin} handleClose={closeLoginDialog} />
         <main className={classes.content}>
           <div className={classes.toolbar} />
           <Switch>

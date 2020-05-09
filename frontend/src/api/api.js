@@ -2,7 +2,7 @@ import axios from 'axios';
 import Config from '../config.json';
 
 export function login(request) {
-  var link = Config.ipAddress + '/login';
+  var link = Config.ipAddress + '/authenticate';
   return axios.post(link, request);
 }
 
