@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
@@ -35,6 +35,12 @@ export default function ItemCard(props) {
   const classes = useStyles();
   const [raised, setRaised] = useState(false);
   const [quantity, setQuantity] = useState(0);
+
+  useEffect(() => {
+    if (props.quantity) {
+      setQuantity(props.quantity);
+    }
+  }, []);
 
   const handleHover = () => {
     if (props.allowHover) {

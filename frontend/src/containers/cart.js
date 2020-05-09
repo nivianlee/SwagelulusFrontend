@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
@@ -15,15 +15,72 @@ const useStyles = makeStyles((theme) => ({
 
 const Cart = (props) => {
   const classes = useStyles();
+  const [cart, setCart] = useState([]);
+  const [foodItems, setFoodItems] = useState([]);
+
+  useEffect(() => {
+    const sessionCart = sessionStorage.getItem('cart');
+    if (sessionCart) {
+      setCart(JSON.parse(sessionCart));
+    }
+  }, []);
+
+  useEffect(() => {
+    const getFoodItemData = async () => {
+      const foodItemList = await Promise.all(
+        cart.map(
+          (cartItem) =>
+            new Promise((resolve, reject) => {
+              const body = { foodItemID: cartItem.foodItemID };
+              Api.getItemById(body)
+                .then((result) => {
+                  resolve(result.data[0]);
+                })
+                .catch((err) => {
+                  console.error(err);
+                  reject(err);
+                });
+            })
+        )
+      );
+      setFoodItems(foodItemList);
+    };
+    getFoodItemData();
+  }, [cart]);
+
+  const updateCart = (foodItemID, quantity) => {
+    let sessionCart = sessionStorage.getItem('cart');
+    if (sessionCart) {
+      sessionCart = JSON.parse(sessionCart);
+      if (quantity > 0) {
+        sessionCart = JSON.parse(sessionStorage.getItem('cart')).map((cartItem) => {
+          if (cartItem.foodItemID === foodItemID) {
+            cartItem.quantity = quantity;
+          }
+          return cartItem;
+        });
+      } else {
+        sessionCart = sessionCart.filter((cartItem) => cartItem.foodItemID != foodItemID);
+      }
+      sessionStorage.setItem('cart', JSON.stringify(sessionCart));
+    }
+  };
 
   return (
-    <Grid container>
+    <Grid container spacing={2}>
       <Grid item xs={12} sm={12} md={12} lg={12}>
         <Card>
           <CardContent>Shopping Cart</CardContent>
         </Card>
       </Grid>
-      <Grid item></Grid>
+      <Grid item>
+        <ItemCardGridFood
+          dataList={foodItems}
+          quantities={cart.map((cartItem) => cartItem.quantity)}
+          buttonText={'Update'}
+          buttonOnClick={updateCart}
+        />
+      </Grid>
     </Grid>
   );
 };
