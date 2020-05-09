@@ -6,7 +6,7 @@ export default function ItemCardGridRes(props) {
   return (
     <Grid container direction='row' justify={'center'} spacing={2}>
       {props.dataList.map((restaurant, index) => (
-        <Grid item key={index}>
+        <Grid item sm={3} md={3} lg={3} key={index}>
           <ItemCard
             title={restaurant.name}
             image={restaurant.image}
