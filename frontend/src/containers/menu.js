@@ -27,10 +27,33 @@ const Menu = (props) => {
       });
   }, []);
 
+  const addToCart = (foodItemID, quantity) => {
+    if (quantity > 0) {
+      if (sessionStorage.getItem('cart')) {
+        let itemIsExisting = false;
+        let newCart = JSON.parse(sessionStorage.getItem('cart')).map((cartItem) => {
+          if (cartItem.foodItemID === foodItemID) {
+            cartItem.quantity = cartItem.quantity + quantity;
+            itemIsExisting = true;
+          }
+          return cartItem;
+        });
+        if (!itemIsExisting) {
+          newCart = newCart.concat({ foodItemID: foodItemID, quantity: quantity });
+        }
+        sessionStorage.setItem('cart', JSON.stringify(newCart));
+        console.log(newCart);
+      } else {
+        sessionStorage.setItem('cart', JSON.stringify([{ foodItemID: foodItemID, quantity: quantity }]));
+        console.log(JSON.parse(sessionStorage.getItem('cart')));
+      }
+    }
+  };
+
   return (
     <Grid container className={classes.center}>
       <Grid item xs={12} sm={12} md={8} lg={8}>
-        <ItemCardGridFood dataList={props.restaurantFoodItems} buttonText={'VIEW'} />
+        <ItemCardGridFood dataList={props.restaurantFoodItems} buttonText={'Add to Cart'} buttonOnClick={addToCart} />
       </Grid>
     </Grid>
   );

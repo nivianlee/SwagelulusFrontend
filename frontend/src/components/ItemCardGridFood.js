@@ -13,7 +13,8 @@ export default function ItemCardGridFood(props) {
             subtitle={'$' + foodItem.price}
             description={foodItem.description}
             buttonText={props.buttonText}
-            buttonOnClick={() => console.log(foodItem.image)}
+            buttonOnClick={(quantity) => props.buttonOnClick(foodItem.foodItemID, quantity)}
+            allowQuantity={true}
             allowHover={true}
           />
         </Grid>
