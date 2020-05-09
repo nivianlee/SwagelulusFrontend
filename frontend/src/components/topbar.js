@@ -93,16 +93,18 @@ const Topbar = (props) => {
           </Grid>
           {sessionStorage.getItem('userID') ? (
             <Grid item style={{ display: 'flex', direction: 'row', justifyContent: 'space-between' }}>
-              <Tooltip title='My Cart'>
-                <IconButton
-                  aria-label='shoppingCart'
-                  onClick={() => {
-                    handleShoppingCart();
-                  }}
-                >
-                  <ShoppingCartIcon style={{ color: '#000000' }} />
-                </IconButton>
-              </Tooltip>
+              {sessionStorage.getItem('userType') && sessionStorage.getItem('userType') === 'hcw' && (
+                <Tooltip title='My Cart'>
+                  <IconButton
+                    aria-label='shoppingCart'
+                    onClick={() => {
+                      handleShoppingCart();
+                    }}
+                  >
+                    <ShoppingCartIcon style={{ color: '#000000' }} />
+                  </IconButton>
+                </Tooltip>
+              )}
               <Tooltip title='My Profile'>
                 <IconButton
                   aria-label='accountCircle'
