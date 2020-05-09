@@ -11,6 +11,7 @@ import Businesses from './containers/businesses';
 import Profile from './containers/profile';
 import Menu from './containers/menu';
 import Donate from './containers/donate';
+import Cart from './containers/cart';
 
 import Sidebar from './components/sidebar';
 import Topbar from './components/topbar';
@@ -140,6 +141,10 @@ const App = (props) => {
     props.history.push('/profile');
   };
 
+  const handleShoppingCart = () => {
+    props.history.push('/cart');
+  };
+
   return (
     <Provider store={store}>
       <div className={classes.root}>
@@ -158,6 +163,7 @@ const App = (props) => {
           handlePressLogin={openLoginDialog}
           handleLogout={handleLogout}
           handleProfile={handleProfile}
+          handleShoppingCart={handleShoppingCart}
           pathname={pathname}
           handleSelectedItem={handleSelectedItem}
           selectedItem={selectedItem}
@@ -172,6 +178,7 @@ const App = (props) => {
             <Route exact path='/profile' component={Profile}></Route>
             <Route exact path='/menu' component={Menu}></Route>
             <Route exact path='/donate' component={Donate}></Route>
+            <Route exact path='/cart' component={Cart}></Route>
             <Redirect from='/' to={'home'} />
           </Switch>
         </main>

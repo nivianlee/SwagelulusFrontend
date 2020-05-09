@@ -9,6 +9,7 @@ import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import VpnKeyIcon from '@material-ui/icons/VpnKey';
 
 const useStyles = makeStyles((theme) => ({
@@ -35,6 +36,7 @@ const Topbar = (props) => {
     handlePressLogin,
     handleLogout,
     handleProfile,
+    handleShoppingCart,
     pathname,
     handleSelectedItem,
     selectedItem,
@@ -91,6 +93,16 @@ const Topbar = (props) => {
           </Grid>
           {sessionStorage.getItem('userID') ? (
             <Grid item style={{ display: 'flex', direction: 'row', justifyContent: 'space-between' }}>
+              <Tooltip title='My Cart'>
+                <IconButton
+                  aria-label='shoppingCart'
+                  onClick={() => {
+                    handleShoppingCart();
+                  }}
+                >
+                  <ShoppingCartIcon style={{ color: '#000000' }} />
+                </IconButton>
+              </Tooltip>
               <Tooltip title='My Profile'>
                 <IconButton
                   aria-label='accountCircle'
