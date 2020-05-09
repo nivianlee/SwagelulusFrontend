@@ -7,7 +7,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
-import sample_image from './images/sample_food_pasta.png';
+import sample_image from '../images/sample_food_pasta.png';
 
 const useStyles = makeStyles({
   root: {
