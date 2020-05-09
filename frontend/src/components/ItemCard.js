@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
+import ButtonGroup from '@material-ui/core/ButtonGroup';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 
@@ -13,7 +14,6 @@ const useStyles = makeStyles({
     width: 300,
     minHeight: 450,
     borderRadius: 8,
-    paddingBottom: 10,
   },
   media: {
     height: 70,
@@ -27,16 +27,36 @@ const useStyles = makeStyles({
   },
   button: {
     justifyContent: 'center',
+    alignItems: 'center',
   },
 });
 
 export default function ItemCard(props) {
   const classes = useStyles();
   const [raised, setRaised] = useState(false);
+  const [quantity, setQuantity] = useState(0);
+
+  useEffect(() => {
+    if (props.quantity) {
+      setQuantity(props.quantity);
+    }
+  }, []);
 
   const handleHover = () => {
     if (props.allowHover) {
       setRaised(!raised);
+    }
+  };
+
+  const handleIncrement = () => {
+    setQuantity(quantity + 1);
+  };
+
+  const handleDecrement = () => {
+    if (quantity > 0) {
+      setQuantity(quantity - 1);
+    } else {
+      setQuantity(0);
     }
   };
 
@@ -56,12 +76,21 @@ export default function ItemCard(props) {
       </CardContent>
       {props.buttonText && (
         <CardActions>
-          <Grid className={classes.button} container>
+          <Grid className={classes.button} container direction='row' spacing={1}>
+            <Grid item>
+              {props.allowQuantity && (
+                <ButtonGroup size='small' aria-label='small outlined button group'>
+                  <Button onClick={handleDecrement}>-</Button>
+                  <Button style={{ backgroundColor: 'transparent' }}>{quantity}</Button>
+                  <Button onClick={handleIncrement}>+</Button>
+                </ButtonGroup>
+              )}
+            </Grid>
             <Grid item>
               <Button
                 variant='contained'
                 style={{ backgroundColor: '#4ea5d5', color: '#ffffff' }}
-                onClick={props.buttonOnClick}
+                onClick={() => props.buttonOnClick(quantity)}
               >
                 {props.buttonText}
               </Button>

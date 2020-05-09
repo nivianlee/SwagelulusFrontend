@@ -30,3 +30,8 @@ export function updateDonatedAmount(request) {
   var link = Config.ipAddress + '/updateDonatedAmount';
   return axios.post(link, request);
 }
+
+export function getItemById(request) {
+  var link = Config.ipAddress + '/getItemById';
+  return axios.post(link, request);
+}
