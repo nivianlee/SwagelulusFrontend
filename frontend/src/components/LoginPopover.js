@@ -28,9 +28,7 @@ export default function FormDialog(props) {
   return (
     <Dialog open={props.open} onClose={props.handleClose} square aria-labelledby='form-dialog-title'>
       <DialogTitle id='form-dialog-title'>
-        <Typography variant='h4' component='h2'>
-          Log In
-        </Typography>
+        <Typography variant='h4'>Log In</Typography>
       </DialogTitle>
       <DialogContent>
         <DialogContentText>Authenticate with SingPass</DialogContentText>

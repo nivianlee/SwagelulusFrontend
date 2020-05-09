@@ -11,7 +11,7 @@ import sample_image from '../images/sample_food_pasta.png';
 
 const useStyles = makeStyles({
   root: {
-    width: 320,
+    width: 300,
     borderRadius: 8,
     paddingBottom: 10,
   },
@@ -44,7 +44,7 @@ export default function ItemCard(props) {
     <Card className={classes.root} raised={raised} onMouseOver={handleHover} onMouseOut={handleHover}>
       <CardMedia className={classes.media} image={sample_image} title='Paella dish' />
       <CardContent>
-        <Typography variant='h5' component='h2'>
+        <Typography variant='h6' component='h2'>
           {props.title}
         </Typography>
         <Typography className={classes.pos} color='textSecondary'>

@@ -116,9 +116,10 @@ const App = (props) => {
         if (result.data.isValid) {
           sessionStorage.setItem('userID', nric);
           sessionStorage.setItem('userType', result.data.type);
-          if (result.data.type == 'hcw') {
+          if (result.data.type === 'hcw') {
             sessionStorage.setItem('orgID', result.data.id);
           }
+          props.history.push('/');
         } else {
           console.log('invalid user id');
         }
