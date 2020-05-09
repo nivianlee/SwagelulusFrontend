@@ -25,6 +25,7 @@ const Organisations = (props) => {
       .then((result) => {
         props.dispatch({ type: 'SET_ORGANISATIONS', data: result.data });
         setOrg(result.data);
+        setFiltered(result.data);
       })
       .catch((err) => {
         console.error(err);
@@ -33,18 +34,15 @@ const Organisations = (props) => {
 
   const handleChange = (e) => {
     setSearchQuery(e.target.value);
-    let currentList = [];
     let newList = [];
     if (e.target.value) {
-      currentList = org;
-      newList = currentList.filter(o => {
-        const item = o.name;
-        const lc = item.toLowerCase();
+      newList = org.filter((o) => {
+        const lc = o.name.toLowerCase();
         const filter = e.target.value.toLowerCase();
         return lc.includes(filter);
       });
     } else {
-      newList = org;
+      newList = [...org];
     }
     setFiltered(newList);
   };
@@ -53,30 +51,6 @@ const Organisations = (props) => {
     props.dispatch({ type: 'SET_SELECTED_ORGANISATION_ID', data: orgID });
     props.history.push('/donate');
   };
-
-  const buildFilter = (filter) => {
-    let query = {};
-    for (let keys in filter) {
-      if (filter[keys].constructor === Array && filter[keys].length > 0) {
-        query[keys] = filter[keys];
-      }
-    }
-    return query;
-  };
-
-  const filterData = (data, query) => {
-    const filteredData = data.filter((item) => {
-      for (let key in query) {
-        if (item[key] === undefined || !query[key].includes(item[key])) {
-          return false;
-        }
-      }
-      return true;
-    });
-    return filteredData;
-  };
-
-  const query = buildFilter(searchQuery);
 
   return (
     <Grid container className={classes.center} spacing={2}>
@@ -94,7 +68,7 @@ const Organisations = (props) => {
         </Card>
       </Grid>
       <Grid item xs={12} sm={12} md={8} lg={8}>
-        <ItemCardGridOrg dataList={org} buttonText={'Donate'} buttonOnClick={selectOrg} />
+        <ItemCardGridOrg dataList={filtered} buttonText={'Donate'} buttonOnClick={selectOrg} />
       </Grid>
     </Grid>
   );
