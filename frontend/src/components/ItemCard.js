@@ -7,11 +7,11 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
-import sample_image from '../images/sample_food_pasta.png';
 
 const useStyles = makeStyles({
   root: {
     width: 300,
+    minHeight: 450,
     borderRadius: 8,
     paddingBottom: 10,
   },
@@ -42,7 +42,7 @@ export default function ItemCard(props) {
 
   return (
     <Card className={classes.root} raised={raised} onMouseOver={handleHover} onMouseOut={handleHover}>
-      <CardMedia className={classes.media} image={sample_image} title='Paella dish' />
+      <CardMedia className={classes.media} image={props.image} title={props.title} />
       <CardContent>
         <Typography variant='h6' component='h2'>
           {props.title}
@@ -58,7 +58,11 @@ export default function ItemCard(props) {
         <CardActions>
           <Grid className={classes.button} container>
             <Grid item>
-              <Button variant='contained' size='small' color='primary' onClick={props.buttonOnClick}>
+              <Button
+                variant='contained'
+                style={{ backgroundColor: '#4ea5d5', color: '#ffffff' }}
+                onClick={props.buttonOnClick}
+              >
                 {props.buttonText}
               </Button>
             </Grid>

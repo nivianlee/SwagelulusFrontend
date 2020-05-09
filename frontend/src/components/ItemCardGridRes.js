@@ -9,6 +9,7 @@ export default function ItemCardGridRes(props) {
         <Grid item key={index}>
           <ItemCard
             title={restaurant.name}
+            image={restaurant.image}
             subtitle={restaurant.contactNum}
             description={restaurant.address + ' ' + restaurant.postalCode}
             buttonText={props.buttonText}

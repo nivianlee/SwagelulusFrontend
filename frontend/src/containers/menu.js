@@ -9,7 +9,9 @@ import * as Api from '../api/api';
 
 import { connect } from 'react-redux';
 
-const useStyles = makeStyles((theme) => ({}));
+const useStyles = makeStyles((theme) => ({
+  center: { alignItems: 'center', justifyContent: 'center' },
+}));
 
 const Menu = (props) => {
   const classes = useStyles();
@@ -28,12 +30,7 @@ const Menu = (props) => {
   return (
     <Grid container className={classes.center}>
       <Grid item xs={12} sm={12} md={8} lg={8}>
-        <Card>
-          <ItemCardGridFood
-            dataList={props.restaurantFoodItems.concat(props.restaurantFoodItems)}
-            buttonText={'VIEW'}
-          />
-        </Card>
+        <ItemCardGridFood dataList={props.restaurantFoodItems} buttonText={'VIEW'} />
       </Grid>
     </Grid>
   );

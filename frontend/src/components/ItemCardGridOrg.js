@@ -4,11 +4,12 @@ import ItemCard from './ItemCard';
 
 export default function ItemCardGridOrg(props) {
   return (
-    <Grid container direction='row' justify={'center'} spacing={2}>
+    <Grid container direction='row' spacing={2}>
       {props.dataList.map((org, index) => (
         <Grid item key={index}>
           <ItemCard
             title={org.name}
+            image={org.image}
             subtitle={'# meals donated today'}
             description={org.address + ' ' + org.postalCode}
             buttonText={props.buttonText}
