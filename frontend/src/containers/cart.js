@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
@@ -61,7 +60,7 @@ const Cart = (props) => {
           return cartItem;
         });
       } else {
-        sessionCart = sessionCart.filter((cartItem) => cartItem.foodItemID != foodItemID);
+        sessionCart = sessionCart.filter((cartItem) => cartItem.foodItemID !== foodItemID);
       }
       sessionStorage.setItem('cart', JSON.stringify(sessionCart));
     }
