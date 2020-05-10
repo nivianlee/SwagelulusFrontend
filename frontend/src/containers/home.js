@@ -121,7 +121,7 @@ const Home = (props) => {
                 </Grid>
                 <Grid item xs={12} sm={12} md={12} lg={12}>
                   <Typography variant='body1' style={{ marginTop: '20px' }}>
-                    Explore over 800 meals to choose from local F&B's
+                    Explore over 800 meals to choose from local F&Bs
                   </Typography>
                 </Grid>
               </Grid>
@@ -133,7 +133,7 @@ const Home = (props) => {
                 </Grid>
                 <Grid item xs={12} sm={12} md={12} lg={12}>
                   <Typography variant='h6' style={{ marginTop: '20px' }}>
-                    Local F&B Supported
+                    Local F&Bs Supported
                   </Typography>
                 </Grid>
                 <Grid item xs={12} sm={12} md={12} lg={12}>
