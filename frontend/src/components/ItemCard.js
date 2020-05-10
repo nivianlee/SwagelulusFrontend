@@ -28,6 +28,7 @@ const useStyles = makeStyles({
   button: {
     justifyContent: 'center',
     alignItems: 'center',
+    marginTop: 50,
   },
 });
 
@@ -81,9 +82,7 @@ export default function ItemCard(props) {
             ))}
           </ul>
         )}
-      </CardContent>
-      {props.buttonText && (
-        <CardActions>
+        {props.buttonText && (
           <Grid className={classes.button} container direction='row' spacing={1}>
             <Grid item>
               {props.allowQuantity && (
@@ -104,8 +103,8 @@ export default function ItemCard(props) {
               </Button>
             </Grid>
           </Grid>
-        </CardActions>
-      )}
+        )}
+      </CardContent>
     </Card>
   );
 }

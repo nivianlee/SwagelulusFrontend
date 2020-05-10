@@ -64,15 +64,17 @@ const Topbar = (props) => {
               style={{ display: 'flex', direction: 'row', justifyContent: 'space-between', width: '600px' }}
             >
               <Grid item xs={3} sm={3} md={3} lg={3}>
-                <img
-                  src={Logo}
-                  width='175px'
-                  height='60px'
-                  alt='support'
-                  onClick={() => {
-                    handleLogo();
-                  }}
-                />
+                <Button color='primary' variant='text'>
+                  <img
+                    src={Logo}
+                    width='175px'
+                    height='60px'
+                    alt='support'
+                    onClick={() => {
+                      handleLogo();
+                    }}
+                  />
+                </Button>
               </Grid>
               {mobileOpen && (
                 <>

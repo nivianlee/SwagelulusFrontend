@@ -106,8 +106,8 @@ const Home = (props) => {
       </Grid>
       <Grid item xs={12} sm={12} md={12} lg={12}>
         <Card className={classes.card}>
-          <div className={classes.title}>Show your support today</div>
-          <div className={classes.subtitle}>Give a meal to a hero today through our local F&Bs!</div>
+          <div className={classes.title}>Show your support today!</div>
+          <div className={classes.subtitle}>Give a meal to our local heroes by donating meal credits to our partner organisations</div>
           <Grid container direction='row'>
             <Grid item xs={4} sm={4} md={4} lg={4}>
               <Grid container direction='column' className={classes.center}>
@@ -121,7 +121,7 @@ const Home = (props) => {
                 </Grid>
                 <Grid item xs={12} sm={12} md={12} lg={12}>
                   <Typography variant='body1' style={{ marginTop: '20px' }}>
-                    Explore over 800 meals to choose from local F&Bs
+                    Credits for over 800 meals provided by local F&Bs
                   </Typography>
                 </Grid>
               </Grid>
