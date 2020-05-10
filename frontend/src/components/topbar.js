@@ -11,6 +11,7 @@ import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import VpnKeyIcon from '@material-ui/icons/VpnKey';
+import Logo from '../images/logo4.jpg';
 
 const useStyles = makeStyles((theme) => ({
   appBar: { zIndex: theme.zIndex.drawer + 1 },
@@ -35,6 +36,7 @@ const Topbar = (props) => {
     handleDrawerToggle,
     handlePressLogin,
     handleLogout,
+    handleLogo,
     handleProfile,
     handleShoppingCart,
     pathname,
@@ -60,19 +62,15 @@ const Topbar = (props) => {
               style={{ display: 'flex', direction: 'row', justifyContent: 'space-between', width: '480px' }}
             >
               <Grid item xs={3} sm={3} md={3} lg={3}>
-                <Typography
-                  variant='body1'
-                  style={{ color: '#000000', marginTop: '12px' }}
-                  onClick={(event) => handleSelectedItem(event, 0)}
-                  selected={selectedItem === 0}
-                >
-                  Hello
-                </Typography>
+                <img src={Logo} width='175px' height='60px' alt='support' onClick={() => {
+                    handleLogo();
+                  }}/>
+                
               </Grid>
               <Grid item xs={3} sm={3} md={3} lg={3}>
                 <Typography
                   variant='body1'
-                  style={{ color: '#000000', marginTop: '12px' }}
+                  style={{ color: '#000000', marginTop: '21px', marginLeft: '30px' }}
                   onClick={(event) => handleSelectedItem(event, 1)}
                   selected={selectedItem === 1}
                 >
@@ -82,7 +80,7 @@ const Topbar = (props) => {
               <Grid item xs={3} sm={3} md={3} lg={3}>
                 <Typography
                   variant='body1'
-                  style={{ color: '#000000', marginTop: '12px' }}
+                  style={{ color: '#000000', marginTop: '21px' }}
                   onClick={(event) => handleSelectedItem(event, 2)}
                   selected={selectedItem === 2}
                 >

@@ -144,6 +144,10 @@ const App = (props) => {
     props.history.push('/');
   };
 
+  const handleLogo = () => {
+    props.history.push('/');
+  }
+
   const handleProfile = () => {
     props.history.push('/profile');
   };
@@ -169,6 +173,7 @@ const App = (props) => {
           handleDrawerToggle={handleDrawerToggle}
           handlePressLogin={openLoginDialog}
           handleLogout={handleLogout}
+          handleLogo={handleLogo}
           handleProfile={handleProfile}
           handleShoppingCart={handleShoppingCart}
           pathname={pathname}
