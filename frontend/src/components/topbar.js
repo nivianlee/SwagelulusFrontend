@@ -12,6 +12,7 @@ import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import VpnKeyIcon from '@material-ui/icons/VpnKey';
 import Button from '@material-ui/core/Button';
+import Logo from '../images/logo4.jpg';
 
 const useStyles = makeStyles((theme) => ({
   appBar: { zIndex: theme.zIndex.drawer + 1 },
@@ -36,6 +37,7 @@ const Topbar = (props) => {
     handleDrawerToggle,
     handlePressLogin,
     handleLogout,
+    handleLogo,
     handleProfile,
     handleShoppingCart,
     pathname,
@@ -58,17 +60,18 @@ const Topbar = (props) => {
           <Grid item xs={10} sm={10} md={10} lg={10}>
             <Grid
               container
-              style={{ display: 'flex', direction: 'row', justifyContent: 'space-between', width: '480px' }}
+              style={{ display: 'flex', direction: 'row', justifyContent: 'space-between', width: '600px' }}
             >
-              <Grid item>
-                <Typography
-                  variant='body1'
-                  style={{ color: '#000000', marginTop: '12px' }}
-                  onClick={(event) => handleSelectedItem(event, 0)}
-                  selected={selectedItem === 0}
-                >
-                  Hello
-                </Typography>
+              <Grid item xs={3} sm={3} md={3} lg={3}>
+                <img
+                  src={Logo}
+                  width='175px'
+                  height='60px'
+                  alt='support'
+                  onClick={() => {
+                    handleLogo();
+                  }}
+                />
               </Grid>
               <Grid item>
                 <Button color='primary' variant='text'>
