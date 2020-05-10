@@ -11,6 +11,7 @@ import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import VpnKeyIcon from '@material-ui/icons/VpnKey';
+import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles((theme) => ({
   appBar: { zIndex: theme.zIndex.drawer + 1 },
@@ -59,7 +60,7 @@ const Topbar = (props) => {
               container
               style={{ display: 'flex', direction: 'row', justifyContent: 'space-between', width: '480px' }}
             >
-              <Grid item xs={3} sm={3} md={3} lg={3}>
+              <Grid item>
                 <Typography
                   variant='body1'
                   style={{ color: '#000000', marginTop: '12px' }}
@@ -69,36 +70,42 @@ const Topbar = (props) => {
                   Hello
                 </Typography>
               </Grid>
-              <Grid item xs={3} sm={3} md={3} lg={3}>
-                <Typography
-                  variant='body1'
-                  style={{ color: '#000000', marginTop: '12px' }}
-                  onClick={(event) => handleSelectedItem(event, 1)}
-                  selected={selectedItem === 1}
-                >
-                  Organisations
-                </Typography>
-              </Grid>
-              <Grid item xs={3} sm={3} md={3} lg={3}>
-                <Typography
-                  variant='body1'
-                  style={{ color: '#000000', marginTop: '12px' }}
-                  onClick={(event) => handleSelectedItem(event, 2)}
-                  selected={selectedItem === 2}
-                >
-                  F&B Businesses
-                </Typography>
-              </Grid>
-              {sessionStorage.getItem('userType') === 'res' && (
-                <Grid item xs={3} sm={3} md={3} lg={3}>
+              <Grid item>
+                <Button color='primary' variant='text'>
                   <Typography
                     variant='body1'
                     style={{ color: '#000000', marginTop: '12px' }}
-                    onClick={(event) => handleSelectedItem(event, 4)}
-                    selected={selectedItem === 4}
+                    onClick={(event) => handleSelectedItem(event, 1)}
+                    selected={selectedItem === 1}
                   >
-                    Orders
+                    Our Beneficiaries
                   </Typography>
+                </Button>
+              </Grid>
+              <Grid item>
+                <Button color='primary' variant='text'>
+                  <Typography
+                    variant='body1'
+                    style={{ color: '#000000', marginTop: '12px' }}
+                    onClick={(event) => handleSelectedItem(event, 2)}
+                    selected={selectedItem === 2}
+                  >
+                    Partner Restaurants
+                  </Typography>
+                </Button>
+              </Grid>
+              {sessionStorage.getItem('userType') === 'res' && (
+                <Grid item xs={3} sm={3} md={3} lg={3}>
+                  <Button color='primary' variant='text'>
+                    <Typography
+                      variant='body1'
+                      style={{ color: '#000000', marginTop: '12px' }}
+                      onClick={(event) => handleSelectedItem(event, 4)}
+                      selected={selectedItem === 4}
+                    >
+                      Orders
+                    </Typography>
+                  </Button>
                 </Grid>
               )}
             </Grid>

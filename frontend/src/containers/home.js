@@ -107,7 +107,7 @@ const Home = (props) => {
       <Grid item xs={12} sm={12} md={12} lg={12}>
         <Card className={classes.card}>
           <div className={classes.title}>Show your support today</div>
-          <div className={classes.subtitle}>We make it a seamless experience to appreciate our local heroes!</div>
+          <div className={classes.subtitle}>Give a meal to a hero today through our local F&Bs!</div>
           <Grid container direction='row'>
             <Grid item xs={4} sm={4} md={4} lg={4}>
               <Grid container direction='column' className={classes.center}>
