@@ -62,7 +62,7 @@ export default function ItemCard(props) {
 
   return (
     <Card className={classes.root} raised={raised} onMouseOver={handleHover} onMouseOut={handleHover}>
-      <CardMedia className={classes.media} image={props.image} title={props.title} />
+      {props.image && <CardMedia className={classes.media} image={props.image} title={props.title} />}
       <CardContent>
         <Typography variant='h6' component='h2'>
           {props.title}
@@ -70,9 +70,17 @@ export default function ItemCard(props) {
         <Typography className={classes.pos} color='textSecondary'>
           {props.subtitle}
         </Typography>
-        <Typography variant='body2' component='p'>
-          {props.description}
-        </Typography>
+        {!props.descIsList ? (
+          <Typography variant='body2' component='p'>
+            {props.description}
+          </Typography>
+        ) : (
+          <ul>
+            {props.description.map((d) => (
+              <li>{d}</li>
+            ))}
+          </ul>
+        )}
       </CardContent>
       {props.buttonText && (
         <CardActions>

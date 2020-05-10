@@ -89,6 +89,18 @@ const Topbar = (props) => {
                   F&B Businesses
                 </Typography>
               </Grid>
+              {sessionStorage.getItem('userType') === 'res' && (
+                <Grid item xs={3} sm={3} md={3} lg={3}>
+                  <Typography
+                    variant='body1'
+                    style={{ color: '#000000', marginTop: '12px' }}
+                    onClick={(event) => handleSelectedItem(event, 4)}
+                    selected={selectedItem === 4}
+                  >
+                    Orders
+                  </Typography>
+                </Grid>
+              )}
             </Grid>
           </Grid>
           {sessionStorage.getItem('userID') ? (

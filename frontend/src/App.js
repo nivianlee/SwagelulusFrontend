@@ -81,6 +81,9 @@ const App = (props) => {
     if (pathname === '/profile') {
       setSelectedItem(3);
     }
+    if (pathname === '/orders') {
+      setSelectedItem(4);
+    }
   }, [props.history.location.pathname]);
 
   const handleDrawerToggle = () => {
@@ -102,6 +105,9 @@ const App = (props) => {
     }
     if (index === 3) {
       props.history.push('/profile');
+    }
+    if (index === 4) {
+      props.history.push('/orders');
     }
   };
 

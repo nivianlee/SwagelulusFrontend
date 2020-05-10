@@ -40,3 +40,18 @@ export function placeOrder(request) {
   var link = Config.ipAddress + '/placeOrder';
   return axios.post(link, request);
 }
+
+export function getOrdersByRestaurantId(request) {
+  var link = Config.ipAddress + '/getOrdersByRestaurantId';
+  return axios.post(link, request);
+}
+
+export function getOrderItemsByOrderId(request) {
+  var link = Config.ipAddress + '/getOrderItemsByOrderId';
+  return axios.post(link, request);
+}
+
+export function getOrganisationById(request) {
+  var link = Config.ipAddress + '/getOrganisationById';
+  return axios.post(link, request);
+}
