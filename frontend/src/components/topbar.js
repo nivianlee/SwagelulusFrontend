@@ -76,48 +76,30 @@ const Topbar = (props) => {
                   />
                 </Button>
               </Grid>
-              {mobileOpen && (
-                <>
-                  <Grid item>
-                    <Button color='primary' variant='text'>
-                      <Typography
-                        variant='body1'
-                        style={{ color: '#000000', marginTop: '12px' }}
-                        onClick={(event) => handleSelectedItem(event, 1)}
-                        selected={selectedItem === 1}
-                      >
-                        Our Beneficiaries
-                      </Typography>
-                    </Button>
-                  </Grid>
-                  <Grid item>
-                    <Button color='primary' variant='text'>
-                      <Typography
-                        variant='body1'
-                        style={{ color: '#000000', marginTop: '12px' }}
-                        onClick={(event) => handleSelectedItem(event, 2)}
-                        selected={selectedItem === 2}
-                      >
-                        Partner Restaurants
-                      </Typography>
-                    </Button>
-                  </Grid>
-                </>
-              )}
-              {sessionStorage.getItem('userType') === 'res' && (
-                <Grid item xs={3} sm={3} md={3} lg={3}>
-                  <Button color='primary' variant='text'>
-                    <Typography
-                      variant='body1'
-                      style={{ color: '#000000', marginTop: '12px' }}
-                      onClick={(event) => handleSelectedItem(event, 4)}
-                      selected={selectedItem === 4}
-                    >
-                      Orders
-                    </Typography>
-                  </Button>
-                </Grid>
-              )}
+              <Grid item>
+                <Button color='primary' variant='text' style={{ marginLeft: '20px', marginTop: '20px' }}>
+                  <Typography
+                    variant='body1'
+                    style={{ color: '#000000' }}
+                    onClick={(event) => handleSelectedItem(event, 1)}
+                    selected={selectedItem === 1}
+                  >
+                    Our Beneficiaries
+                  </Typography>
+                </Button>
+              </Grid>
+              <Grid item>
+                <Button color='primary' variant='text' style={{ marginTop: '20px' }}>
+                  <Typography
+                    variant='body1'
+                    style={{ color: '#000000' }}
+                    onClick={(event) => handleSelectedItem(event, 2)}
+                    selected={selectedItem === 2}
+                  >
+                    Partner Restaurants
+                  </Typography>
+                </Button>
+              </Grid>
             </Grid>
           </Grid>
           {sessionStorage.getItem('userID') ? (

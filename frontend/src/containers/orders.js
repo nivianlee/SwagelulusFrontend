@@ -14,39 +14,7 @@ const Orders = (props) => {
   const classes = useStyles();
   const [orders, setOrders] = useState([]);
 
-  useEffect(() => {
-    const body = { resID: sessionStorage.getItem('userID') };
-    Api.getOrdersByRestaurantId(body)
-      .then(async (orders) => {
-        const listOfListOfOrderItems = await Promise.all(
-          orders.data.map(
-            (order) =>
-              new Promise((resolve, reject) => {
-                Api.getOrderItemsByOrderId({ orderID: order.orderID })
-                  .then((orderItems) => {
-                    Api.getOrganisationById({ orgID: order.orgID })
-                      .then((org) => {
-                        resolve({ ...order, orderItems: orderItems.data, org: org.data });
-                      })
-                      .catch((err) => {
-                        console.error(err);
-                        reject(err);
-                      });
-                  })
-                  .catch((err) => {
-                    console.error(err);
-                    reject(err);
-                  });
-              })
-          )
-        );
-        console.log(listOfListOfOrderItems);
-        setOrders(listOfListOfOrderItems);
-      })
-      .catch((err) => {
-        console.error(err);
-      });
-  }, []);
+  useEffect(() => {}, []);
 
   return (
     <Grid container className={classes.center}>

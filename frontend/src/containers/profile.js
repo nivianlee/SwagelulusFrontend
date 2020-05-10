@@ -5,6 +5,7 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import { makeStyles } from '@material-ui/core/styles';
 import { connect } from 'react-redux';
+import ItemCardGridOrder from '../components/ItemCardGridOrder';
 import { BarChart, Bar, Cell, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 import * as Api from '../api/api';
 
@@ -13,14 +14,50 @@ const useStyles = makeStyles((theme) => ({}));
 const Profile = (props) => {
   const classes = useStyles();
   const [ordersPerMonth, setOrdersPerMonth] = useState([]);
+  const [orders, setOrders] = useState([]);
 
   useEffect(() => {
     if (sessionStorage.getItem('userType') === 'hcw') {
       getOrgOrdersPerMonth();
     } else {
       getResOrdersPerMonth();
+      getOrdersByRestaurantId();
     }
   }, []);
+
+  const getOrdersByRestaurantId = async () => {
+    const body = { resID: sessionStorage.getItem('userID') };
+    Api.getOrdersByRestaurantId(body)
+      .then(async (orders) => {
+        const listOfListOfOrderItems = await Promise.all(
+          orders.data.map(
+            (order) =>
+              new Promise((resolve, reject) => {
+                Api.getOrderItemsByOrderId({ orderID: order.orderID })
+                  .then((orderItems) => {
+                    Api.getOrganisationById({ orgID: order.orgID })
+                      .then((org) => {
+                        resolve({ ...order, orderItems: orderItems.data, org: org.data });
+                      })
+                      .catch((err) => {
+                        console.error(err);
+                        reject(err);
+                      });
+                  })
+                  .catch((err) => {
+                    console.error(err);
+                    reject(err);
+                  });
+              })
+          )
+        );
+        console.log(listOfListOfOrderItems);
+        setOrders(listOfListOfOrderItems);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  };
 
   const getResOrdersPerMonth = async () => {
     Api.getResOrdersPerMonth()
@@ -63,7 +100,6 @@ const Profile = (props) => {
 
   return (
     <Grid container>
-      <Grid item xs={12} sm={12} md={12} lg={12}></Grid>
       <Grid container direction='row' className={classes.card} spacing={1}>
         <Grid item xs={12} sm={12} md={6} lg={6}>
           <Card>
@@ -91,6 +127,11 @@ const Profile = (props) => {
               </>
             </CardContent>
           </Card>
+        </Grid>
+      </Grid>
+      <Grid container className={classes.center}>
+        <Grid item xs={12} sm={12} md={8} lg={8}>
+          <ItemCardGridOrder dataList={orders} />
         </Grid>
       </Grid>
     </Grid>
