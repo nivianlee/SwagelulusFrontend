@@ -1,8 +1,9 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
 import ItemCardGridFood from '../components/ItemCardGridFood';
 import * as Api from '../api/api';
+import Snackbar from '@material-ui/core/Snackbar';
 
 import { connect } from 'react-redux';
 
@@ -12,6 +13,8 @@ const useStyles = makeStyles(() => ({
 
 const Menu = (props) => {
   const classes = useStyles();
+  const [notification, setNotification] = useState('');
+  const [bc, setBC] = useState(false);
 
   useEffect(() => {
     const body = { resID: props.selectedRestaurantID };
@@ -40,11 +43,20 @@ const Menu = (props) => {
         }
         sessionStorage.setItem('cart', JSON.stringify(newCart));
         console.log(newCart);
+        setNotification('Item has been added to cart!');
+        showNotification();
       } else {
         sessionStorage.setItem('cart', JSON.stringify([{ foodItemID: foodItemID, quantity: quantity }]));
         console.log(JSON.parse(sessionStorage.getItem('cart')));
       }
     }
+  };
+
+  const showNotification = () => {
+    setBC(true);
+    setTimeout(function () {
+      setBC(false);
+    }, 6000);
   };
 
   return (
@@ -55,6 +67,15 @@ const Menu = (props) => {
         ) : (
           <ItemCardGridFood dataList={props.restaurantFoodItems} />
         )}
+      </Grid>
+      <Grid container justify={'center'}>
+        <Grid item xs={12} sm={12} md={10} lg={8}>
+          <Grid container>
+            <Grid item xs={12} sm={12} md={4}>
+              <Snackbar place='bc' color='info' message={notification} open={bc} onClose={() => setBC(false)} />
+            </Grid>
+          </Grid>
+        </Grid>
       </Grid>
     </Grid>
   );

@@ -6,6 +6,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import ItemCardGridFood from '../components/ItemCardGridFood';
 import Button from '@material-ui/core/Button';
 import * as Api from '../api/api';
+import Snackbar from '@material-ui/core/Snackbar';
 
 import { connect } from 'react-redux';
 
@@ -17,6 +18,8 @@ const Cart = (props) => {
   const classes = useStyles();
   const [cart, setCart] = useState([]);
   const [foodItems, setFoodItems] = useState([]);
+  const [notification, setNotification] = useState('');
+  const [bc, setBC] = useState(false);
 
   useEffect(() => {
     const sessionCart = sessionStorage.getItem('cart');
@@ -26,27 +29,29 @@ const Cart = (props) => {
   }, []);
 
   useEffect(() => {
-    const getFoodItemData = async () => {
-      const foodItemList = await Promise.all(
-        cart.map(
-          (cartItem) =>
-            new Promise((resolve, reject) => {
-              const body = { foodItemID: cartItem.foodItemID };
-              Api.getItemById(body)
-                .then((result) => {
-                  resolve(result.data[0]);
-                })
-                .catch((err) => {
-                  console.error(err);
-                  reject(err);
-                });
-            })
-        )
-      );
-      setFoodItems(foodItemList);
-    };
     getFoodItemData();
   }, [cart]);
+
+  const getFoodItemData = async () => {
+    const foodItemList = await Promise.all(
+      cart.map(
+        (cartItem) =>
+          new Promise((resolve, reject) => {
+            const body = { foodItemID: cartItem.foodItemID };
+            Api.getItemById(body)
+              .then((result) => {
+                resolve(result.data[0]);
+              })
+              .catch((err) => {
+                console.error(err);
+                reject(err);
+              });
+          })
+      )
+    );
+    setFoodItems(foodItemList);
+  };
+  getFoodItemData();
 
   const updateCart = (foodItemID, quantity) => {
     let sessionCart = sessionStorage.getItem('cart');
@@ -86,6 +91,9 @@ const Cart = (props) => {
         .then((result) => {
           console.log(result);
           sessionStorage.removeItem('cart');
+          getFoodItemData();
+          setNotification('Ordered succcessfully!');
+          showNotification();
         })
         .catch((err) => {
           console.error(err);
@@ -94,8 +102,15 @@ const Cart = (props) => {
     }
   };
 
+  const showNotification = () => {
+    setBC(true);
+    setTimeout(function () {
+      setBC(false);
+    }, 6000);
+  };
+
   return (
-    <Grid container spacing={2}>
+    <Grid container direction='column' spacing={2} justify='left'>
       <Grid item xs={12} sm={12} md={12} lg={12}>
         <Card>
           <Grid className={classes.titleBar} container direction='row'>
@@ -114,13 +129,22 @@ const Cart = (props) => {
           </Grid>
         </Card>
       </Grid>
-      <Grid item>
+      <Grid item xs={12} sm={12} md={12} lg={7}>
         <ItemCardGridFood
           dataList={foodItems}
           quantities={cart.map((cartItem) => cartItem.quantity)}
           buttonText={'Update'}
           buttonOnClick={updateCart}
         />
+      </Grid>
+      <Grid container justify={'center'}>
+        <Grid item xs={12} sm={12} md={10} lg={8}>
+          <Grid container>
+            <Grid item xs={12} sm={12} md={4}>
+              <Snackbar place='bc' color='info' message={notification} open={bc} onClose={() => setBC(false)} />
+            </Grid>
+          </Grid>
+        </Grid>
       </Grid>
     </Grid>
   );

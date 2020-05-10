@@ -67,7 +67,11 @@ const Businesses = (props) => {
         </Card>
       </Grid>
       <Grid item xs={12} sm={12} md={8} lg={8} style={{ marginTop: '10px' }}>
-        <ItemCardGridRes dataList={filtered} buttonText={'Donate'} buttonOnClick={selectRestaurant} />
+        <ItemCardGridRes
+          dataList={filtered}
+          buttonText={sessionStorage.getItem('userType') === 'hcw' ? 'Order' : 'Donate'}
+          buttonOnClick={selectRestaurant}
+        />
       </Grid>
     </Grid>
   );

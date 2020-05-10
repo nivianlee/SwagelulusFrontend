@@ -9,7 +9,12 @@ import ItemCardGridOrder from '../components/ItemCardGridOrder';
 import { BarChart, Bar, Cell, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 import * as Api from '../api/api';
 
-const useStyles = makeStyles((theme) => ({}));
+const useStyles = makeStyles((theme) => ({
+  card: {
+    justifyContent: 'center',
+    alignItem: 'center',
+  },
+}));
 
 const Profile = (props) => {
   const classes = useStyles();
@@ -35,6 +40,7 @@ const Profile = (props) => {
               new Promise((resolve, reject) => {
                 Api.getOrderItemsByOrderId({ orderID: order.orderID })
                   .then((orderItems) => {
+                    console.log(orderItems);
                     Api.getOrganisationById({ orgID: order.orgID })
                       .then((org) => {
                         resolve({ ...order, orderItems: orderItems.data, org: org.data });
