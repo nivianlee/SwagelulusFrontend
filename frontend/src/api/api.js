@@ -55,3 +55,18 @@ export function getOrganisationById(request) {
   var link = Config.ipAddress + '/getOrganisationById';
   return axios.post(link, request);
 }
+
+export function getOrgOrdersPerMonth(request) {
+  var link = Config.ipAddress + '/getOrgOrdersPerMonth';
+  return axios.get(link, request);
+}
+
+export function getResOrdersPerMonth(request) {
+  var link = Config.ipAddress + '/getResOrdersPerMonth';
+  return axios.get(link, request);
+}
+
+export function getNearbyRestaurants(request) {
+  var link = Config.ipAddress + '/getNearbyRestaurants';
+  return axios.get(link, request);
+}

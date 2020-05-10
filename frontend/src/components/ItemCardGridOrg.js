@@ -4,9 +4,9 @@ import ItemCard from './ItemCard';
 
 export default function ItemCardGridOrg(props) {
   return (
-    <Grid container direction='row' spacing={2}>
+    <Grid container direction='row' justify={'center'} spacing={2}>
       {props.dataList.map((org, index) => (
-        <Grid item sm={3} md={3} lg={3} key={index}>
+        <Grid item xs={6} sm={6} md={4} lg={4} key={index}>
           <ItemCard
             title={org.name}
             image={org.image}

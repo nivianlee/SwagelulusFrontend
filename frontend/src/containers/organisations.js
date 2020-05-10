@@ -10,7 +10,7 @@ import * as Api from '../api/api';
 import { connect } from 'react-redux';
 
 const useStyles = makeStyles(() => ({
-  center: { justifyContent: 'center' },
+  center: { justifyContent: 'center', alignItems: 'center' },
 }));
 
 const Organisations = (props) => {
@@ -52,21 +52,21 @@ const Organisations = (props) => {
   };
 
   return (
-    <Grid container className={classes.center}>
-      <Grid item xs={12} sm={12} md={8} lg={8}>
-      <Card>
-        <CardContent>
-          <TextField
-            id='filled-search'
-            label='Search field'
-            type='search'
-            value={searchQuery}
-            onChange={handleChange}
-          />
-        </CardContent>
-      </Card>
+    <Grid container className={classes.center} direction='column'>
+      <Grid item xs={12} sm={12} md={12} lg={12}>
+        <Card>
+          <CardContent>
+            <TextField
+              id='filled-search'
+              label='Search Name'
+              type='search'
+              value={searchQuery}
+              onChange={handleChange}
+            />
+          </CardContent>
+        </Card>
       </Grid>
-      <Grid item xs={12} sm={12} md={8} lg={8}>
+      <Grid item xs={12} sm={12} md={8} lg={8} style={{ marginTop: '10px' }}>
         <ItemCardGridOrg dataList={filtered} buttonText={'Donate'} buttonOnClick={selectOrg} />
       </Grid>
     </Grid>

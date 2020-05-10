@@ -146,7 +146,7 @@ const App = (props) => {
 
   const handleLogo = () => {
     props.history.push('/');
-  }
+  };
 
   const handleProfile = () => {
     props.history.push('/profile');
@@ -179,6 +179,7 @@ const App = (props) => {
           pathname={pathname}
           handleSelectedItem={handleSelectedItem}
           selectedItem={selectedItem}
+          mobileOpen={mobileOpen}
         />
         <LoginPopover open={showingLogin} handleLogin={handleLogin} handleClose={closeLoginDialog} />
         <main className={classes.content}>
