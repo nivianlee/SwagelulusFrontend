@@ -63,21 +63,23 @@ const Topbar = (props) => {
               style={{ display: 'flex', direction: 'row', justifyContent: 'space-between', width: '600px' }}
             >
               <Grid item xs={3} sm={3} md={3} lg={3}>
-                <img
-                  src={Logo}
-                  width='175px'
-                  height='60px'
-                  alt='support'
-                  onClick={() => {
-                    handleLogo();
-                  }}
-                />
+                <Button color='primary' variant='text'>
+                  <img
+                    src={Logo}
+                    width='175px'
+                    height='60px'
+                    alt='support'
+                    onClick={() => {
+                      handleLogo();
+                    }}
+                  />
+                </Button>
               </Grid>
               <Grid item>
                 <Button color='primary' variant='text'>
                   <Typography
                     variant='body1'
-                    style={{ color: '#000000', marginTop: '12px' }}
+                    style={{ color: '#000000', marginTop: '20px', marginLeft: '24px' }}
                     onClick={(event) => handleSelectedItem(event, 1)}
                     selected={selectedItem === 1}
                   >
@@ -89,7 +91,7 @@ const Topbar = (props) => {
                 <Button color='primary' variant='text'>
                   <Typography
                     variant='body1'
-                    style={{ color: '#000000', marginTop: '12px' }}
+                    style={{ color: '#000000', marginTop: '20px' }}
                     onClick={(event) => handleSelectedItem(event, 2)}
                     selected={selectedItem === 2}
                   >
