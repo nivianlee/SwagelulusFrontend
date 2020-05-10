@@ -10,7 +10,6 @@ export default function ItemCardGridOrg(props) {
           <ItemCard
             title={org.name}
             image={org.image}
-            subtitle={'# meals donated today'}
             description={org.address + ' ' + org.postalCode}
             buttonText={props.buttonText}
             buttonOnClick={() => props.buttonOnClick(org.orgID)}
