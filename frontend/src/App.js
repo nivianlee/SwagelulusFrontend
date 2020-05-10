@@ -12,6 +12,7 @@ import Profile from './containers/profile';
 import Menu from './containers/menu';
 import Donate from './containers/donate';
 import Cart from './containers/cart';
+import Orders from './containers/orders';
 
 import Sidebar from './components/sidebar';
 import Topbar from './components/topbar';
@@ -179,6 +180,7 @@ const App = (props) => {
             <Route exact path='/menu' component={Menu}></Route>
             <Route exact path='/donate' component={Donate}></Route>
             <Route exact path='/cart' component={Cart}></Route>
+            <Route exact path='/orders' component={Orders}></Route>
             <Redirect from='/' to={'home'} />
           </Switch>
         </main>

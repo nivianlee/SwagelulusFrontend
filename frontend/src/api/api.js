@@ -35,3 +35,8 @@ export function getItemById(request) {
   var link = Config.ipAddress + '/getItemById';
   return axios.post(link, request);
 }
+
+export function placeOrder(request) {
+  var link = Config.ipAddress + '/placeOrder';
+  return axios.post(link, request);
+}

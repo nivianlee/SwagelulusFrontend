@@ -7,13 +7,8 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
-import * as Api from '../api/api';
-
-const useStyles = makeStyles({});
 
 export default function FormDialog(props) {
-  const classes = useStyles();
   const [nric, setNric] = useState('');
 
   const onTextFieldChange = (e) => {

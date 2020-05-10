@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
@@ -61,13 +60,39 @@ const Cart = (props) => {
           return cartItem;
         });
       } else {
-        sessionCart = sessionCart.filter((cartItem) => cartItem.foodItemID != foodItemID);
+        sessionCart = sessionCart.filter((cartItem) => cartItem.foodItemID !== foodItemID);
       }
       sessionStorage.setItem('cart', JSON.stringify(sessionCart));
     }
   };
 
-  const handleCheckout = () => {};
+  const handleCheckout = () => {
+    if (sessionStorage.getItem('userID') && cart) {
+      const dt = new Date();
+      const body = {
+        orderedAt: `${dt.getFullYear().toString().padStart(4, '0')}-${(dt.getMonth() + 1)
+          .toString()
+          .padStart(2, '0')}-${dt.getDate().toString().padStart(2, '0')} ${dt
+          .getHours()
+          .toString()
+          .padStart(2, '0')}:${dt.getMinutes().toString().padStart(2, '0')}:${dt
+          .getSeconds()
+          .toString()
+          .padStart(2, '0')}`,
+        fooditems: cart,
+        userID: sessionStorage.getItem('userID'),
+      };
+      Api.placeOrder(body)
+        .then((result) => {
+          console.log(result);
+          sessionStorage.removeItem('cart');
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+      props.history.push('./cart');
+    }
+  };
 
   return (
     <Grid container spacing={2}>
@@ -77,11 +102,15 @@ const Cart = (props) => {
             <Grid item>
               <CardContent>Shopping Cart</CardContent>
             </Grid>
-            <Grid item>
-              <Button onClick={handleCheckout} color='primary' variant='contained'>
-                Checkout
-              </Button>
-            </Grid>
+            {!cart.length ? (
+              ''
+            ) : (
+              <Grid item>
+                <Button onClick={handleCheckout} color='primary' variant='contained'>
+                  Checkout
+                </Button>
+              </Grid>
+            )}
           </Grid>
         </Card>
       </Grid>
